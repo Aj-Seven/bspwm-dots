@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+##########################
+#  @Aj-Seven             #
+##########################
+
+function hide() {
+	
+case "${theme_dir}" in
+    blurry|blacky)
+        polybar-msg cmd hide | bspc config top_padding 2
+        ;;
+    *)
+        echo "Error"
+        ;;
+esac
+	
+}
+
+function unhide() {
+	
+case "${theme_dir}" in
+	blurry|blacky)
+	    polybar-msg cmd unhide | bspc config top_padding 27
+		;;
+	*)
+		echo "Error"
+		;;
+esac
+
+}
+
+case $1 in
+	-h | --hide | hide)
+		hide
+		exit;;
+	-u | --unhide | unhide)
+		unhide
+		exit;;
+	*) # Invalid option
+		echo "Error: Invalid option"
+		exit;;
+esac
